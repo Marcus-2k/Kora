@@ -1,0 +1,22 @@
+<!--  -->
+<div class="search__user">
+  <mat-form-field class="search__user-input" appearance="outline">
+    <mat-label>Пошук...</mat-label>
+    <input
+      matInput
+      type="text"
+      [(ngModel)]="search_text"
+      (ngModelChange)="setValueSearch()"
+      placeholder="Macdonald"
+      autocomplete="off"
+    />
+  </mat-form-field>
+
+  <mat-form-field class="search__user-select" appearance="outline">
+    <mat-label>Відсортувати за</mat-label>
+    <mat-select [(ngModel)]="type_sort" (ngModelChange)="setTypeSort()">
+      <mat-option [value]="0">Іменем</mat-option>
+      <mat-option [value]="1">Дата реєстрації</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>

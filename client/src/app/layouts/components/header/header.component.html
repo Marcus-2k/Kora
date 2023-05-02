@@ -1,0 +1,26 @@
+<!--  -->
+
+<header class="header">
+  <div class="header__content">
+    <div class="header__content-nav">
+      <ul class="nav__list">
+        <li
+          class="nav__list-link"
+          routerLink="/users"
+          [routerLinkActive]="'nav__list-link--active'"
+        >
+          <span class="material-symbols-outlined"> group </span>
+          <a class="nav__list-link-text">Список користувачів</a>
+        </li>
+        <li
+          class="nav__list-link"
+          routerLink="/user-new"
+          [routerLinkActive]="'nav__list-link--active'"
+        >
+          <span class="material-symbols-outlined"> person_add </span>
+          <a class="nav__list-link-text">Створити користувача</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>

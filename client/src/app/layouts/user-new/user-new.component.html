@@ -1,0 +1,116 @@
+<!--  -->
+
+<div class="container-user_new" *ngIf="formUserNew">
+  <form
+    class="container-user_new__form"
+    [formGroup]="formUserNew"
+    (ngSubmit)="onSubmit()"
+  >
+    <mat-form-field class="container-user_new__form-field" appearance="outline">
+      <mat-label>Ім'я</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="first_name"
+        placeholder="Kaitlyn"
+        autocomplete="off"
+      />
+      <mat-error
+        *ngIf="formUserNew.controls['first_name'].errors?.['minlength']"
+      >
+        Мінімальна кількість символів <strong> 4 </strong>
+      </mat-error>
+      <mat-error
+        *ngIf="formUserNew.controls['first_name'].errors?.['maxlength']"
+      >
+        Максимальна кількість символів <strong> 16 </strong>
+      </mat-error>
+      <mat-error
+        *ngIf="formUserNew.controls['first_name'].errors?.['required']"
+      >
+        Ім'я користувача є <strong>обов'язковим!</strong>
+      </mat-error>
+      <mat-error *ngIf="formUserNew.controls['first_name'].errors?.['pattern']">
+        Дозволені літери <strong>a-z,A-Z</strong>. Всі інші символи (пробіли, _,
+        -, ...) заборонено
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="container-user_new__form-field" appearance="outline">
+      <mat-label>Прізвище</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="last_name"
+        placeholder="Macdonald"
+        autocomplete="off"
+      />
+      <mat-error
+        *ngIf="formUserNew.controls['last_name'].errors?.['minlength']"
+      >
+        Мінімальна кількість символів <strong> 4 </strong>
+      </mat-error>
+      <mat-error
+        *ngIf="formUserNew.controls['last_name'].errors?.['maxlength']"
+      >
+        Максимальна кількість символів <strong> 16 </strong>
+      </mat-error>
+      <mat-error *ngIf="formUserNew.controls['last_name'].errors?.['required']">
+        Прізвище користувача є <strong>обов'язковим!</strong>
+      </mat-error>
+      <mat-error *ngIf="formUserNew.controls['last_name'].errors?.['pattern']">
+        Дозволені літери <strong>a-z,A-Z</strong>. Всі інші символи (пробіли, _,
+        -, ...) заборонено
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="container-user_new__form-field" appearance="outline">
+      <mat-label>Електронна адреса</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="email"
+        placeholder="kaitlyn_macdonald@gmail.com"
+        autocomplete="off"
+      />
+      <mat-error *ngIf="formUserNew.controls['email'].errors?.['maxlength']">
+        Максимальна кількість символів <strong> 16 </strong>
+      </mat-error>
+      <mat-error *ngIf="formUserNew.controls['email'].errors?.['email']">
+        Будь ласка, введіть дійсну адресу електронної пошти
+      </mat-error>
+      <mat-error *ngIf="formUserNew.controls['email'].errors?.['required']">
+        Адреса електронної пошти <strong>обов'язкова!</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="container-user_new__form-field" appearance="outline">
+      <mat-label>Виберіть дату народження</mat-label>
+      <input
+        matInput
+        [matDatepicker]="picker"
+        formControlName="date_of_birth"
+      />
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker touchUi #picker></mat-datepicker>
+      <mat-error
+        *ngIf="formUserNew.controls['date_of_birth'].errors?.['required']"
+      >
+        Дата народження користувача є <strong>обов'язковою!</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      color="primary"
+      class="container-user_new__form-btn"
+      [disabled]="formUserNew.invalid || formUserNew.disabled"
+    >
+      {{ updateMode ? "Оновити користувача" : "Створити користувача" }}
+    </button>
+  </form>
+</div>

@@ -1,0 +1,87 @@
+<!--  -->
+<ng-container *ngIf="loader">
+  <div class="content-element-center">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="loader === false">
+  <div class="users">
+    <div class="users__content">
+      <div class="users__content-search">
+        <app-search-users
+          (valueSearch)="getValueSearch($event)"
+          (valueTypeSort)="getTypeSort($event)"
+        ></app-search-users>
+      </div>
+
+      <div class="users__content-list">
+        <div
+          class="list-item"
+          *ngFor="
+            let user of usersInfo | find_by_text : search_text;
+            let idx = index
+          "
+        >
+          <!-- First name -->
+          <div class="list-item-block block">
+            <p class="block-title">Ім'я:</p>
+            <p class="block-value">&nbsp;{{ user.first_name }}</p>
+          </div>
+          <!-- Last name -->
+          <div class="list-item-block block">
+            <p class="block-title">Прізвище:</p>
+            <p class="block-value">&nbsp;{{ user.last_name }}</p>
+          </div>
+          <!-- Email -->
+          <div class="list-item-block block">
+            <p class="block-title">Електронна адреса:</p>
+            <p class="block-value">&nbsp;{{ user.email }}</p>
+          </div>
+          <!-- Date of birth -->
+          <div class="list-item-block block">
+            <p class="block-title">Дата народження:</p>
+            <p class="block-value">
+              &nbsp; {{ user.date_of_birth | date : "fullDate" }}
+            </p>
+          </div>
+          <!-- Date of birth -->
+          <div class="list-item-block block">
+            <p class="block-title">Дата реєстрації:</p>
+            <p class="block-value">
+              &nbsp;
+              <ng-container *ngIf="type_sort === 0">
+                {{ user.date_of_create | date : "fullDate" }}
+              </ng-container>
+
+              <ng-container *ngIf="type_sort === 1">
+                {{ user.date_of_create | date : "medium" }}
+              </ng-container>
+            </p>
+          </div>
+          <!--  -->
+          <div class="list-item-panel panel">
+            <button
+              mat-icon-button
+              [matMenuTriggerFor]="menu"
+              aria-label="Example icon-button with a menu"
+            >
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <!-- Menu  -->
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item [routerLink]="'/user-new/' + user._id">
+                <mat-icon>edit</mat-icon>
+                <span>Змінити</span>
+              </button>
+              <button mat-menu-item (click)="deleteUser(user._id, idx)">
+                <mat-icon>delete_outline</mat-icon>
+                <span>Видалити</span>
+              </button>
+            </mat-menu>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

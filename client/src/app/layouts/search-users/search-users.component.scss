@@ -1,0 +1,10 @@
+.search__user {
+  display: flex;
+  justify-content: space-between;
+  &-input {
+    width: 65%;
+  }
+  &-select {
+    width: 25%;
+  }
+}
